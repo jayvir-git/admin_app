@@ -84,6 +84,14 @@ export const editProjects = async (req, res) => {
   );
 };
 
+export const deleteProject = async (req, res) => {
+  const { toDelete, id } = req.body;
+  if (toDelete) {
+    const delResponse = await Project.deleteOne({ _id: id });
+    res.status(201).json(delResponse);
+  }
+};
+
 //profile routes
 export const getProfile = async (req, res) => {
   try {
@@ -137,6 +145,14 @@ export const addInquiry = async (req, res) => {
   }
 };
 
+export const deleteInquiry = async (req, res) => {
+  const { toDelete, id } = req.body;
+  if (toDelete) {
+    const delResponse = await Inquiry.deleteOne({ _id: id });
+    res.status(201).json(delResponse);
+  }
+};
+
 //feedback
 export const getFeedback = async (req, res) => {
   try {
@@ -176,5 +192,13 @@ export const addFeedback = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(409).json({ message: error.message });
+  }
+};
+
+export const deleteFeedback = async (req, res) => {
+  const { toDelete, id } = req.body;
+  if (toDelete) {
+    const delResponse = await Feedback.deleteOne({ _id: id });
+    res.status(201).json(delResponse);
   }
 };
